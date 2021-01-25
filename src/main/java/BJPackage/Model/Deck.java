@@ -32,11 +32,14 @@ public class Deck {
     }
 
     public boolean isEmpty() {
-        return cardList.isEmpty();
-    }
+        return cardList.isEmpty();}
 
     public Card hit() {
         return getCard();
+    }
+
+    public boolean remove(Card card) {
+        return cardList.remove(card);
     }
 
     private Card getCard() {
@@ -45,6 +48,6 @@ public class Deck {
 
     @Override
     public String toString() {
-        return "Liste des cartes du paquet : \n"+ cardList.toString();
+        return "Liste des cartes du paquet : \n" + cardList.toString();
     }
 }

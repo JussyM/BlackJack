@@ -5,7 +5,7 @@ public class Card {
     private Value value;
 
     /**
-     * @return
+     * @return color
      */
 
     public Color getColor() {
@@ -35,13 +35,6 @@ public class Card {
      */
     @Override
     public String toString() {
-        String colorName;
-        colorName = switch (color) {
-            case CLUB -> "trèfle";
-            case DIAMOND -> "Carreau";
-            case HEART -> "Coeur";
-            case SPADE -> "Pique";
-        };
-        return value.name() +" de "+colorName;
+        return value.name() +" de "+color.getName();
     }
 }

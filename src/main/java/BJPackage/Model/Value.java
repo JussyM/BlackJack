@@ -1,20 +1,28 @@
 package BJPackage.Model;
 
 public enum Value {
-    ACE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(11), QUEEN(12),
-    KING(13);
+    ACE(1, 11), TWO(2, 0), THREE(3, 0),
+    FOUR(4, 0), FIVE(5, 0), SIX(6, 0),
+    SEVEN(7, 0), EIGHT(8, 0), NINE(9, 0),
+    TEN(10, 0), JACK(0, 0), QUEEN(10, 0),
+    KING(0, 0);
     private final int value;
+    private final int sndValue;
 
-    private Value(int value) {
+    private Value(int value, int sndValue) {
         this.value = value;
+        this.sndValue = sndValue;
     }
 
     public int getValue() {
         return value;
     }
 
+    public int getSndValue() {
+        return sndValue;
+    }
+
     /**
-     *
      * @param value
      * @return
      */
