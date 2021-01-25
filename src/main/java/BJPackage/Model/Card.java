@@ -1,10 +1,14 @@
 package BJPackage.Model;
 
+import java.util.Objects;
+
 public class Card {
     private Color color;
     private Value value;
 
     /**
+     * getter for color
+     *
      * @return color
      */
 
@@ -13,13 +17,17 @@ public class Card {
     }
 
     /**
-     * @return
+     * getter for value
+     *
+     * @return value
      */
     public Value getValue() {
         return value;
     }
 
     /**
+     * constructor for Card
+     *
      * @param color
      * @param value
      */
@@ -30,11 +38,36 @@ public class Card {
     }
 
     /**
+     * return the card into String
      *
-     * @return
+     * @return string
      */
     @Override
     public String toString() {
-        return value.name() +" de "+color.getName();
+        return value.name() + " de " + color.getName();
+    }
+
+    /**
+     * equal method override
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Card)) return false;
+        Card card = (Card) o;
+        return getColor() == card.getColor() && getValue() == card.getValue();
+    }
+
+    /**
+     * hashCode of the class
+     *
+     * @return Integer
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getColor(), getValue());
     }
 }

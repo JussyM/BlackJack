@@ -5,6 +5,9 @@ public class Board {
     private Bank bank;
     private Player player;
 
+    /**
+     * Board constructor
+     */
     public Board() {
         deck = new Deck();
         bank = new Bank();
@@ -12,18 +15,36 @@ public class Board {
 
     }
 
+    /**
+     * getter for bank player
+     *
+     * @return back
+     */
     public Bank getBank() {
         return bank;
     }
 
+    /**
+     * getter for player itself
+     *
+     * @return player
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * return the deck
+     *
+     * @return deck
+     */
     public Deck getDeck() {
         return deck;
     }
 
+    /**
+     * give card to player at the begening
+     */
     public void giveCardPlayer() {
         var instance = deck.hit();
         var i = 0;
@@ -36,9 +57,14 @@ public class Board {
 
 
     }
-    public void giveBankCard(){
+
+    /**
+     * give the appropriate card to the bank
+     */
+    public void giveBankCard() {
         var instance = deck.hit();
         bank.addCart(instance);
+        deck.remove(instance);
     }
 
 }
