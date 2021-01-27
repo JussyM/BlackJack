@@ -5,13 +5,20 @@ import java.util.List;
 
 public class Player {
     private final List<Card> playerCart;
+    private int mise;
+
+    public int getMise() {
+        return mise;
+    }
 
     /**
      *
      */
     public Player() {
         playerCart = new ArrayList<>();
+
     }
+    public void insertMise(int mise){this.mise=mise;}
 
     /**
      *

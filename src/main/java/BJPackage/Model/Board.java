@@ -1,9 +1,10 @@
 package BJPackage.Model;
 
 public class Board {
-    private Deck deck;
+    private final Deck deck;
     private Bank bank;
     private Player player;
+
 
     /**
      * Board constructor
@@ -14,6 +15,7 @@ public class Board {
         player = new Player();
 
     }
+
 
     /**
      * getter for bank player
@@ -43,7 +45,7 @@ public class Board {
     }
 
     /**
-     * give card to player at the begening
+     * give card to player at the beginning
      */
     public void giveCardPlayer() {
         var instance = deck.hit();

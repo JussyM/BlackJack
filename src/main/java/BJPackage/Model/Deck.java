@@ -15,10 +15,8 @@ public class Deck {
         cardList = new ArrayList<>();
         Value[] values = Value.values();
         IntStream.range(0, values.length).forEachOrdered(i -> {
-            cardList.add(new Card(Color.CLUB, values[i]));
-            cardList.add(new Card(Color.DIAMOND, values[i]));
-            cardList.add(new Card(Color.HEART, values[i]));
-            cardList.add(new Card(Color.SPADE, values[i]));
+            IntStream.range(0,Color.values().length).forEachOrdered(j->{
+                cardList.add(new Card(Color.values()[j],values[i]));});
         });
     }
 

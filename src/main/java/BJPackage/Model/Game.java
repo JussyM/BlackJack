@@ -51,6 +51,22 @@ public class Game {
     }
 
     /**
+     *
+     * @param player
+     * @return
+     */
+    public boolean win(Player player){
+        int score;
+        if(player instanceof Bank){
+             score = bankScore();
+            return score <= 21 || score > playerScore();
+        }else{
+            score= playerScore();
+            return score <= 21;
+        }
+    }
+
+    /**
      * @return
      */
     private int playerScore() {
