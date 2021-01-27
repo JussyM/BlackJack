@@ -1,7 +1,7 @@
 package BJPackage.Model;
 
 public class Game {
-    Board board;
+  private   Board board;
 
     /**
      *
@@ -9,6 +9,10 @@ public class Game {
     public Game() {
         board = new Board();
 
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     /**
@@ -52,10 +56,10 @@ public class Game {
     private int playerScore() {
         var player = board.getPlayer();
         if (strike(player)) return 21;
+var score = player.getPlayerCart().stream().mapToInt(x -> x.getValue().getValue()).sum();
 
-
-        return player.getPlayerCart().stream().mapToInt(x -> x.getValue().getValue()).sum() > 21 ?
-                player.getPlayerCart().stream().mapToInt(x -> x.getValue().getSndValue()).sum() : 0;
+        return score > 21 ?
+               score= player.getPlayerCart().stream().mapToInt(x -> x.getValue().getSndValue()).sum() : score;
     }
 
     /**
@@ -77,5 +81,10 @@ public class Game {
                                         (player.getPlayerCart().contains(new Card(Color.SPADE, Value.JACK))))));
     }
 
+
+    public void askCard(Card card){
+        board.getPlayer().addCart(card);
+
+    }
 
 }
