@@ -5,6 +5,15 @@ import BJPackage.View.Emoji;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Emoji.ACTIVITY[0]);
-    }
+        for (int i = 0; i < Emoji.ACTIVITY.length; i++) {
+            System.out.println("------");
+            System.out.println("| "+" "+"  |");
+            System.out.println("| "+ Emoji.PEOPLE[i]+" |");
+            System.out.println("| "+" "+"  |");
+            System.out.println("------");
+        }
+        }
+
+
+
 }

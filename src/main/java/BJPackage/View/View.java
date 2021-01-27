@@ -9,7 +9,7 @@ public class View implements ViewInterface{
     }
 
     @Override
-    public void printBoard(Board board) {
+    public void displayCard(Board board) {
 
     }
 }
