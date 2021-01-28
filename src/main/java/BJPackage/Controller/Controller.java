@@ -18,7 +18,7 @@ public class Controller {
         view.printWelcomeMsg();
         var mise = view.askBet();
         game.getPlayer().insertMise(mise);
-        game.getBank().insertMise(mise*2);
+        game.miseBank();
         view.printMsg("La banque mise: "+game.getBank().getMise());
         view.printMsg("Melange des cartes");
         game.shuffeDeckCard();

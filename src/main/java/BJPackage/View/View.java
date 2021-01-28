@@ -98,7 +98,7 @@ public class View implements ViewInterface {
     private void printLine(List<Card> list) {
         for (int i = 0; i < list.size(); i++) {
             System.out.print(TerminalColor
-                    .RED_BACKGROUND + "----------------" + TerminalColor.toDefault);
+                    .YELLOW_BACKGROUND + "----------------" + TerminalColor.toDefault);
         }
         System.out.println();
     }

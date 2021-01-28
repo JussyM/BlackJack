@@ -1,6 +1,9 @@
 package BJPackage.Model;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Range;
+
+import java.util.Random;
 
 public class Game {
     private Deck deck;
@@ -40,6 +43,11 @@ public class Game {
         player.calculScore();
         bank.calculScore();
         playerState();
+    }
+
+    public void miseBank() {
+        getBank().insertMise(player.getMise() * (int) (Math.random() * 10) + 5);
+
     }
 
     public int calculDeGain() {
