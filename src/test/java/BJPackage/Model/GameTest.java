@@ -10,10 +10,10 @@ class GameTest {
         Game g = new Game();
         g.giveCard();
         g.shuffeDeckCard();
-      var playerNbCard=  g.getBoard().getPlayer().getPlayerCart().size();
-      var bankNbCard=  g.getBoard().getBank().getPlayerCart().size();
-        assertEquals(2,playerNbCard);
-        assertEquals(1,bankNbCard);
+        var playerNbCard = g.getPlayer().getPlayerCart().size();
+        var bankNbCard = g.getBank().getPlayerCart().size();
+        assertEquals(2, playerNbCard);
+        assertEquals(1, bankNbCard);
 
     }
 
@@ -22,18 +22,19 @@ class GameTest {
         Game g = new Game();
         g.shuffeDeckCard();
         g.giveCard();
-        g.askCard(new Card(Color.SPADE,Value.ACE));
-        g.askCard(new Card(Color.SPADE,Value.JACK));
-        var score = g.scorePlayer(g.getBoard().getPlayer());
-        assertEquals(21,score);
+        //g.askCard(new Card(Color.SPADE, Value.ACE));
+        //g.askCard(new Card(Color.SPADE, Value.JACK));
+        var score = g.scorePlayer(g.getPlayer());
+        assertEquals(21, score);
     }
+
     @Test
-    void scorePlayerWhenFail(){
+    void scorePlayerWhenFail() {
         Game g = new Game();
         //g.shuffeDeckCard();
         g.giveCard();
-        var score = g.scorePlayer(g.getBoard().getPlayer());
-        assertEquals(2,score);
+        var score = g.scorePlayer(g.getPlayer());
+        assertEquals(2, score);
 
     }
 }

@@ -1,33 +1,65 @@
 package BJPackage.Model;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Game {
-  private   Board board;
+    private Deck deck;
+    private Player player;
+    private Bank bank;
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
 
     /**
      *
      */
     public Game() {
-        board = new Board();
+        deck = new Deck();
+        player = new Player();
+        bank = new Bank();
 
     }
 
-    public Board getBoard() {
-        return board;
+    public Bank getBank() {
+        return bank;
     }
 
     /**
      *
      */
     public void shuffeDeckCard() {
-        board.getDeck().shuffle();
+        deck.shuffle();
+    }
+
+    public void calculateScore() {
+        player.calculScore();
+        bank.calculScore();
+        playerState();
+    }
+
+    public int calculDeGain() {
+        Player instance;
+        if (getPlayer().getState() == State.WIN) {
+            instance = getPlayer();
+            instance.insertMise(bank.getMise() + instance.getMise());
+        } else {
+            instance = getBank();
+            instance.insertMise(player.getMise() + instance.getMise());
+        }
+        return instance.getMise();
     }
 
     /**
      *
      */
-    private void addCardPlayer() {
-        board.giveCardPlayer();
-        board.giveBankCard();
+    private void addCardPlayers() {
+        giveCardPlayer();
+        giveBankCard();
 
     }
 
@@ -35,7 +67,7 @@ public class Game {
      *
      */
     public void giveCard() {
-        addCardPlayer();
+        addCardPlayers();
     }
 
     /**
@@ -44,63 +76,64 @@ public class Game {
      */
     public int scorePlayer(Player player) {
         if (player instanceof Bank) {
-            return bankScore();
+            return bank.getScore();
         } else {
-            return playerScore();
+            return this.player.getScore();
+        }
+    }
+
+
+    public boolean win() {
+        return player.getState() == State.WIN || bank.getState() == State.WIN;
+
+    }
+
+    private void playerState() {
+        if (player.getScore() <= 21 && player.getScore() > bank.getScore()) {
+            player.setState(State.WIN);
+        }
+        if (bank.getScore() < player.getScore() || bank.getScore() <= 21) {
+            bank.setState(State.WIN);
         }
     }
 
     /**
      *
-     * @param player
-     * @return
      */
-    public boolean win(Player player){
-        int score;
-        if(player instanceof Bank){
-             score = bankScore();
-            return score <= 21 || score > playerScore();
-        }else{
-            score= playerScore();
-            return score <= 21;
+    public Card askCard() {
+        return getDeck().hit();
+
+
+    }
+
+    public void insertCardPlayer(Card card) {
+        getPlayer().addCart(card);
+        getDeck().remove(card);
+        giveBankCard();
+    }
+
+    /**
+     * give card to player at the beginning
+     */
+    public void giveCardPlayer() {
+        var instance = deck.hit();
+        var i = 0;
+        while (i <= 1) {
+            player.addCart(instance);
+            deck.remove(instance);
+            instance = deck.hit();
+            i++;
         }
+
+
     }
 
     /**
-     * @return
+     * give the appropriate card to the bank
      */
-    private int playerScore() {
-        var player = board.getPlayer();
-        if (strike(player)) return 21;
-var score = player.getPlayerCart().stream().mapToInt(x -> x.getValue().getValue()).sum();
-
-        return score > 21 ?
-               score= player.getPlayerCart().stream().mapToInt(x -> x.getValue().getSndValue()).sum() : score;
+    public void giveBankCard() {
+        var instance = deck.hit();
+        bank.addCart(instance);
+        deck.remove(instance);
     }
-
-    /**
-     * @return
-     */
-    private int bankScore() {
-        return board.getBank().getPlayerCart().stream().mapToInt(x -> x.getValue().getValue()).sum();
-    }
-
-    /**
-     * @param player
-     * @return
-     */
-    private boolean strike(Player player) {
-        return player.getPlayerCart().contains(new Card(Color.SPADE, Value.ACE)) &&
-                (player.getPlayerCart().contains(new Card(Color.SPADE, Value.KING)) ||
-                        (player.getPlayerCart().contains(new Card(Color.SPADE, Value.QUEEN)) ||
-                                (player.getPlayerCart().contains(new Card(Color.SPADE, Value.TEN)) ||
-                                        (player.getPlayerCart().contains(new Card(Color.SPADE, Value.JACK))))));
-    }
-
-
-    public void askCard(Card card){
-        board.getPlayer().addCart(card);
-
-    }
-
 }

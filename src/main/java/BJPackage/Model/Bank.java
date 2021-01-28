@@ -8,4 +8,15 @@ public class Bank extends Player {
     public Bank() {
         super();
     }
+
+    @Override
+    public void calculScore() {
+        super.calculScore();
+
+    }
+
+    @Override
+    public String toString() {
+        return "Bank player";
+    }
 }

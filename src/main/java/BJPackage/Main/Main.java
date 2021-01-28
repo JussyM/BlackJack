@@ -1,19 +1,18 @@
 package BJPackage.Main;
 
+import BJPackage.Controller.Controller;
+import BJPackage.Model.Card;
+import BJPackage.Model.Color;
 import BJPackage.Model.Game;
+import BJPackage.Model.Value;
 import BJPackage.View.Emoji;
+import BJPackage.View.View;
 
 public class Main {
     public static void main(String[] args) {
-        for (int i = 0; i < Emoji.ACTIVITY.length; i++) {
-            System.out.println("------");
-            System.out.println("| "+" "+"  |");
-            System.out.println("| "+ Emoji.PEOPLE[i]+" |");
-            System.out.println("| "+" "+"  |");
-            System.out.println("------");
-        }
-        }
-
+        Controller c = new Controller();
+        c.play();
+    }
 
 
 }

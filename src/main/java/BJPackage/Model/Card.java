@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Card {
     private Color color;
     private Value value;
+    private boolean userSndValue;
 
     /**
      * getter for color
@@ -35,6 +36,7 @@ public class Card {
         if (color == null || value == null) throw new IllegalArgumentException("Argument null");
         this.color = color;
         this.value = value;
+        this.userSndValue = false;
     }
 
     /**
@@ -69,5 +71,13 @@ public class Card {
     @Override
     public int hashCode() {
         return Objects.hash(getColor(), getValue());
+    }
+
+    public boolean isUserSndValue() {
+        return userSndValue;
+    }
+
+    public void setUserSndValue(boolean userSndValue) {
+        this.userSndValue = userSndValue;
     }
 }
