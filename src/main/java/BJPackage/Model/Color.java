@@ -10,6 +10,11 @@ public enum Color {
     private final String name;
     private final String emoji;
 
+    /**
+     * private Color constructor
+     * @param name of the color
+     * @param emoji unicode version of the color
+     */
     private Color(String name, String emoji) {
         this.name = name;
         this.emoji = emoji;
@@ -24,6 +29,10 @@ public enum Color {
         return name;
     }
 
+    /**
+     * getter for emoji
+     * @return emoji
+     */
     public String getEmoji() {
         return emoji;
     }

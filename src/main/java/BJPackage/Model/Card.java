@@ -72,12 +72,4 @@ public class Card {
     public int hashCode() {
         return Objects.hash(getColor(), getValue());
     }
-
-    public boolean isUserSndValue() {
-        return userSndValue;
-    }
-
-    public void setUserSndValue(boolean userSndValue) {
-        this.userSndValue = userSndValue;
-    }
 }

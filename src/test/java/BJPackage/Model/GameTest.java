@@ -9,7 +9,7 @@ class GameTest {
     void giveCard() {
         Game g = new Game();
         g.giveCard();
-        g.shuffeDeckCard();
+        g.shuffleDeckCard();
         var playerNbCard = g.getPlayer().getPlayerCart().size();
         var bankNbCard = g.getBank().getPlayerCart().size();
         assertEquals(2, playerNbCard);
@@ -20,7 +20,7 @@ class GameTest {
     @Test
     void scorePlayerWhenWinStrike() {
         Game g = new Game();
-        g.shuffeDeckCard();
+        g.shuffleDeckCard();
         g.giveCard();
         //g.askCard(new Card(Color.SPADE, Value.ACE));
         //g.askCard(new Card(Color.SPADE, Value.JACK));

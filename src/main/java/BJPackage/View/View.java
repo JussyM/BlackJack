@@ -97,8 +97,7 @@ public class View implements ViewInterface {
 
     private void printLine(List<Card> list) {
         for (int i = 0; i < list.size(); i++) {
-            System.out.print(TerminalColor
-                    .YELLOW_BACKGROUND + "----------------" + TerminalColor.toDefault);
+            System.out.print("----------------");
         }
         System.out.println();
     }
@@ -127,13 +126,14 @@ public class View implements ViewInterface {
         }
         var cardValue = card.getValue().getValue();
         switch (indice) {
-            case 1, 5 -> string = TerminalColor.GREEN_BACKGROUND + "------" + "  "+TerminalColor.toDefault;
-            case 2, 4 -> string = TerminalColor.GREEN_BACKGROUND + "|" + emoji + "  " + emoji + "|" + "  "+TerminalColor.toDefault;
+            case 1, 5 -> string = TerminalColor.GREEN_BACKGROUND + "------" + "  " + TerminalColor.toDefault;
+            case 2, 4 -> string = TerminalColor.GREEN_BACKGROUND + "|" + emoji + "  " + emoji + "|" + "  "
+                    + TerminalColor.toDefault;
             case 3 -> {
                 if (cardValue >= 10) {
-                    string = TerminalColor.GREEN_BACKGROUND + "| " + cardValue + " |" + "  "+TerminalColor.toDefault;
+                    string = TerminalColor.GREEN_BACKGROUND + "| " + cardValue + " |" + "  " + TerminalColor.toDefault;
                 } else {
-                    string = TerminalColor.GREEN_BACKGROUND + "| " + cardValue + "  |" + "  "+TerminalColor.toDefault;
+                    string = TerminalColor.GREEN_BACKGROUND + "| " + cardValue + "  |" + "  " + TerminalColor.toDefault;
                 }
             }
 

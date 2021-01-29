@@ -1,27 +1,31 @@
 package BJPackage.Controller;
 
-import BJPackage.Model.Board;
 import BJPackage.Model.Game;
 import BJPackage.View.View;
 import BJPackage.View.ViewInterface;
 
 public class Controller {
-    private Game game;
-    private ViewInterface view;
+    private final Game game;
+    private final ViewInterface view;
 
+    /**
+     * Controller constructor
+     */
     public Controller() {
         this.game = new Game();
         this.view = new View();
     }
 
+    /**
+     * Launch the blackjack game
+     */
     public void play() {
         view.printWelcomeMsg();
         var mise = view.askBet();
         game.getPlayer().insertMise(mise);
         game.miseBank();
         view.printMsg("La banque mise: "+game.getBank().getMise());
-        view.printMsg("Melange des cartes");
-        game.shuffeDeckCard();
+        game.shuffleDeckCard();
         game.giveCard();
         do {
             view.displayCard(game);

@@ -6,20 +6,30 @@ import org.jetbrains.annotations.Range;
 import java.util.Random;
 
 public class Game {
-    private Deck deck;
-    private Player player;
-    private Bank bank;
+    private final Deck deck;
+    private final Player player;
+    private final Bank bank;
 
+    /**
+     * getter for deck
+     *
+     * @return deck
+     */
     public Deck getDeck() {
         return deck;
     }
 
+    /**
+     * getter for player
+     *
+     * @return player
+     */
     public Player getPlayer() {
         return player;
     }
 
     /**
-     *
+     * Constructor for game
      */
     public Game() {
         deck = new Deck();
@@ -28,28 +38,44 @@ public class Game {
 
     }
 
+    /**
+     * getter for bank
+     *
+     * @return bank
+     */
     public Bank getBank() {
         return bank;
     }
 
     /**
-     *
+     * shuffle the card of the deck
      */
-    public void shuffeDeckCard() {
+    public void shuffleDeckCard() {
         deck.shuffle();
     }
 
+    /**
+     * Calculate the score of each player and update their state
+     */
     public void calculateScore() {
         player.calculScore();
         bank.calculScore();
         playerState();
     }
 
+    /**
+     * give a mise to the player
+     */
     public void miseBank() {
         getBank().insertMise(player.getMise() * (int) (Math.random() * 10) + 5);
 
     }
 
+    /**
+     * calculate the gain of the winner
+     *
+     * @return gain
+     */
     public int calculDeGain() {
         Player instance;
         if (getPlayer().getState() == State.WIN) {
@@ -63,7 +89,7 @@ public class Game {
     }
 
     /**
-     *
+     * give card to each player
      */
     private void addCardPlayers() {
         giveCardPlayer();
@@ -72,30 +98,24 @@ public class Game {
     }
 
     /**
-     *
+     * call addCardPlayers()
      */
     public void giveCard() {
         addCardPlayers();
     }
 
     /**
-     * @param player
-     * @return
+     * return the win of the game
+     * @return state
      */
-    public int scorePlayer(Player player) {
-        if (player instanceof Bank) {
-            return bank.getScore();
-        } else {
-            return this.player.getScore();
-        }
-    }
-
-
     public boolean win() {
         return player.getState() == State.WIN || bank.getState() == State.WIN;
 
     }
 
+    /**
+     * Update the the player status
+     */
     private void playerState() {
         if (player.getScore() <= 21 && player.getScore() > bank.getScore()) {
             player.setState(State.WIN);
@@ -106,7 +126,7 @@ public class Game {
     }
 
     /**
-     *
+     * return a card given by the deck
      */
     public Card askCard() {
         return getDeck().hit();
@@ -114,6 +134,10 @@ public class Game {
 
     }
 
+    /**
+     * insert a card tho the players
+     * @param card
+     */
     public void insertCardPlayer(Card card) {
         getPlayer().addCart(card);
         getDeck().remove(card);

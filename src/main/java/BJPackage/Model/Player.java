@@ -9,10 +9,18 @@ public class Player {
     private int score;
     private State state;
 
+    /**
+     *
+     * @return
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMise() {
         return mise;
     }
@@ -28,14 +36,26 @@ public class Player {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public State getState() {
         return state;
     }
 
+    /**
+     *
+     * @param state
+     */
     public void setState(State state) {
         this.state = state;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Principal player";
@@ -59,11 +79,18 @@ public class Player {
         return playerCart;
     }
 
+    /**
+     *
+     */
     public void calculScore() {
         this.score = playerScore();
 
     }
 
+    /**
+     *
+     * @return
+     */
     private int playerScore() {
         if (strike()) return 21;
         var score = getPlayerCart().stream().mapToInt(x -> x.getValue().getValue()).sum();
