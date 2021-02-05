@@ -79,6 +79,11 @@ public class Game {
         return instance.getMise();
     }
 
+    /**
+     * apply an action according to the answer of the player
+     *
+     * @param answer given by the player
+     */
     public void decision(char answer) {
         switch (answer) {
             case 'p' -> {
@@ -89,10 +94,18 @@ public class Game {
         }
     }
 
+    /**
+     * return an arrays of the player score
+     *
+     * @return array of Integer
+     */
     public int[] playersScore() {
         return new int[]{player.playerScore(), bank.getScore()};
     }
 
+    /**
+     * Calculate the score and of the players and update the state of each players
+     */
     private void calculateScore() {
         player.calculScore();
         bank.calculScore();
@@ -116,7 +129,7 @@ public class Game {
     }
 
     /**
-     * return the win of the game
+     * return the winner of the game
      *
      * @return boolean
      */
@@ -126,18 +139,9 @@ public class Game {
     }
 
     /**
-     * Update the the player status
+     * update the state of the player
      */
-    private void playerState() {
-        if (player.getScore() <= 21 && player.getScore() > bank.getScore()) {
-            player.setState(State.WIN);
-        }
-        if (bank.getScore() < player.getScore() || bank.getScore() < 17) {
-            bank.setState(State.WIN);
-        }
-    }
-
-    public void updateScoreAndState() {
+    private void updateScoreAndState() {
         if (player.getScore() >= 21) {
             player.setState(State.FAIL);
             bank.setState(State.WIN);

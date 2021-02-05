@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 public class View implements ViewInterface {
     /**
-     * @return
+     * return the decision of the player
+     *
+     * @return char
      */
     @Override
     public char askInfo() {
@@ -16,8 +18,10 @@ public class View implements ViewInterface {
     }
 
     /**
+     * return a card to the player
+     *
      * @param game
-     * @return
+     * @return Card
      */
     @Override
     public Card playerCard(Game game) {
@@ -25,6 +29,8 @@ public class View implements ViewInterface {
     }
 
     /**
+     * display each card of the players
+     *
      * @param game
      */
     @Override
@@ -34,6 +40,8 @@ public class View implements ViewInterface {
     }
 
     /**
+     * Print message
+     *
      * @param message
      */
     @Override
@@ -42,7 +50,9 @@ public class View implements ViewInterface {
     }
 
     /**
-     * @return
+     * ask bet to the player
+     *
+     * @return Integer
      */
     @Override
     public int askBet() {
@@ -51,6 +61,8 @@ public class View implements ViewInterface {
     }
 
     /**
+     * print the winner message
+     *
      * @param game
      */
     @Override
@@ -65,6 +77,8 @@ public class View implements ViewInterface {
     }
 
     /**
+     * print out the winner mise
+     *
      * @param mise
      */
     @Override
@@ -73,23 +87,30 @@ public class View implements ViewInterface {
     }
 
     /**
-     *
+     * game name
      */
     @Override
-    public void printWelcomeMsg() {
+    public void gameName() {
         System.out.println();
         printMsg(TerminalColor.BLUE_BACKGROUND + "----------------------------------------" + TerminalColor.toDefault);
         printMsg(TerminalColor.BLUE_BACKGROUND + "          WELCOME TO BLACKJACK          " + TerminalColor.toDefault);
         printMsg(TerminalColor.BLUE_BACKGROUND + "----------------------------------------" + TerminalColor.toDefault);
     }
 
+    /**
+     * print the score of the bank and the player
+     *
+     * @param score array of the score
+     */
     @Override
     public void printScore(int[] score) {
         printMsg("[" + "Score du joueur principal: " + score[0] + "," + "Score de la banque: " + score[1] + "]");
     }
 
     /**
-     * @return
+     * solid input of integer
+     *
+     * @return Integer
      */
     private int returnInt() {
         var scanner = new Scanner(System.in);
@@ -101,9 +122,9 @@ public class View implements ViewInterface {
     }
 
     /**
-     *
+     * display card method
      */
-    public void displayCards(List<Card> playersCard, List<Card> bankCards) {
+    private void displayCards(List<Card> playersCard, List<Card> bankCards) {
         printLine(playersCard);
         printMsg("Player Card: ");
         printMsg(playersCard.toString());
@@ -119,6 +140,8 @@ public class View implements ViewInterface {
     }
 
     /**
+     * print line for separating cards
+     *
      * @param list
      */
     private void printLine(List<Card> list) {
@@ -129,6 +152,8 @@ public class View implements ViewInterface {
     }
 
     /**
+     * assign card
+     *
      * @param cardList
      */
     private void printCards(List<Card> cardList) {
@@ -145,9 +170,11 @@ public class View implements ViewInterface {
     }
 
     /**
-     * @param card
-     * @param indice
-     * @return
+     * assign the card representation into string
+     *
+     * @param card   the card given as arguments
+     * @param indice for each card the indice
+     * @return card string version
      */
     private String printCard(Card card, int indice) {
         var emoji = "";
@@ -176,7 +203,9 @@ public class View implements ViewInterface {
     }
 
     /**
-     * @return
+     * ask the strong version of the char
+     *
+     * @return char
      */
     private char askInfoStrongVersion() {
         var scanner = new Scanner(System.in);

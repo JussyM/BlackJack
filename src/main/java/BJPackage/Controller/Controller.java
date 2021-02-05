@@ -20,7 +20,7 @@ public class Controller {
      * Launch the blackjack game
      */
     public void play() {
-        view.printWelcomeMsg();
+        view.gameName();
         var mise = view.askBet();
         game.getPlayer().insertMise(mise);
         game.miseBank();

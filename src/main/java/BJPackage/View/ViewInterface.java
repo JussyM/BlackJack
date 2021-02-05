@@ -20,7 +20,7 @@ public interface ViewInterface {
 
     void printWinnerMise(int mise);
 
-    void printWelcomeMsg();
+    void gameName();
 
     void printScore(int[] scores);
 
