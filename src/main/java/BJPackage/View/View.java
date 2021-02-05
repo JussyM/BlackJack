@@ -6,45 +6,53 @@ import java.util.List;
 import java.util.Scanner;
 
 public class View implements ViewInterface {
+    /**
+     * @return
+     */
     @Override
     public char askInfo() {
         printMsg("'p' pour choisir une carte ou 's' pour stop");
         return askInfoStrongVersion();
     }
 
+    /**
+     * @param game
+     * @return
+     */
     @Override
     public Card playerCard(Game game) {
         return game.askCard();
     }
 
+    /**
+     * @param game
+     */
     @Override
     public void displayCard(Game game) {
-        displayCard(game.getPlayer().getPlayerCart(), game.getBank().getPlayerCart());
+        displayCards(game.getPlayer().getHand(), game.getBank().getHand());
 
     }
 
+    /**
+     * @param message
+     */
     @Override
     public void printMsg(String message) {
         System.out.println(message);
     }
 
+    /**
+     * @return
+     */
     @Override
     public int askBet() {
         printMsg("Veuillez entrez votre mise: ");
         return returnInt();
     }
 
-    @Override
-    public void decision(Game game, char answer) {
-        switch (answer) {
-            case 'p' -> {
-                game.insertCardPlayer(playerCard(game));
-                System.out.println();
-            }
-            case 's' -> game.calculateScore();
-        }
-    }
-
+    /**
+     * @param game
+     */
     @Override
     public void printWinner(Game game) {
         Player instance;
@@ -56,11 +64,17 @@ public class View implements ViewInterface {
         System.out.println(TerminalColor.toCyan("Felicitation to : " + instance.toString()));
     }
 
+    /**
+     * @param mise
+     */
     @Override
     public void printWinnerMise(int mise) {
         System.out.println(TerminalColor.toBlue("Le gagnant shop une mise de: " + mise));
     }
 
+    /**
+     *
+     */
     @Override
     public void printWelcomeMsg() {
         System.out.println();
@@ -69,6 +83,14 @@ public class View implements ViewInterface {
         printMsg(TerminalColor.BLUE_BACKGROUND + "----------------------------------------" + TerminalColor.toDefault);
     }
 
+    @Override
+    public void printScore(int[] score) {
+        printMsg("[" + "Score du joueur principal: " + score[0] + "," + "Score de la banque: " + score[1] + "]");
+    }
+
+    /**
+     * @return
+     */
     private int returnInt() {
         var scanner = new Scanner(System.in);
         while (!scanner.hasNextInt()) {
@@ -78,23 +100,27 @@ public class View implements ViewInterface {
         return scanner.nextInt();
     }
 
-    public void displayCard(List<Card> playerCard, List<Card> bankCards) {
-        printLine(playerCard);
-        printLine(playerCard);
+    /**
+     *
+     */
+    public void displayCards(List<Card> playersCard, List<Card> bankCards) {
+        printLine(playersCard);
         printMsg("Player Card: ");
-        printMsg(playerCard.toString());
-        printCards(playerCard);
-        printLine(playerCard);
-        printLine(playerCard);
+        printMsg(playersCard.toString());
+        printCards(playersCard);
+        printLine(playersCard);
+        printLine(playersCard);
         printMsg("Bank Card: ");
         printMsg(bankCards.toString());
         printCards(bankCards);
-        printLine(playerCard);
-        printLine(playerCard);
+        printLine(playersCard);
 
 
     }
 
+    /**
+     * @param list
+     */
     private void printLine(List<Card> list) {
         for (int i = 0; i < list.size(); i++) {
             System.out.print("----------------");
@@ -102,6 +128,9 @@ public class View implements ViewInterface {
         System.out.println();
     }
 
+    /**
+     * @param cardList
+     */
     private void printCards(List<Card> cardList) {
         var indice = 1;
         var string = "";
@@ -115,6 +144,11 @@ public class View implements ViewInterface {
         }
     }
 
+    /**
+     * @param card
+     * @param indice
+     * @return
+     */
     private String printCard(Card card, int indice) {
         var emoji = "";
         var string = "";
@@ -141,6 +175,9 @@ public class View implements ViewInterface {
         return string;
     }
 
+    /**
+     * @return
+     */
     private char askInfoStrongVersion() {
         var scanner = new Scanner(System.in);
         var in = scanner.nextLine();

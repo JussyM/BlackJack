@@ -1,10 +1,5 @@
 package BJPackage.Model;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Range;
-
-import java.util.Random;
-
 public class Game {
     private final Deck deck;
     private final Player player;
@@ -54,20 +49,16 @@ public class Game {
         deck.shuffle();
     }
 
-    /**
-     * Calculate the score of each player and update their state
-     */
-    public void calculateScore() {
-        player.calculScore();
-        bank.calculScore();
-        playerState();
-    }
 
     /**
      * give a mise to the player
      */
     public void miseBank() {
-        getBank().insertMise(player.getMise() * (int) (Math.random() * 10) + 5);
+        if (player.getMise() <= 500) {
+            getBank().insertMise(player.getMise() / 2);
+        } else {
+            getBank().insertMise(player.getMise() * 2);
+        }
 
     }
 
@@ -88,6 +79,26 @@ public class Game {
         return instance.getMise();
     }
 
+    public void decision(char answer) {
+        switch (answer) {
+            case 'p' -> {
+                insertCardPlayer(deck.hit());
+                calculateScore();
+            }
+            case 's' -> calculateScore();
+        }
+    }
+
+    public int[] playersScore() {
+        return new int[]{player.playerScore(), bank.getScore()};
+    }
+
+    private void calculateScore() {
+        player.calculScore();
+        bank.calculScore();
+        updateScoreAndState();
+    }
+
     /**
      * give card to each player
      */
@@ -106,7 +117,8 @@ public class Game {
 
     /**
      * return the win of the game
-     * @return state
+     *
+     * @return boolean
      */
     public boolean win() {
         return player.getState() == State.WIN || bank.getState() == State.WIN;
@@ -120,7 +132,14 @@ public class Game {
         if (player.getScore() <= 21 && player.getScore() > bank.getScore()) {
             player.setState(State.WIN);
         }
-        if (bank.getScore() < player.getScore() || bank.getScore() <= 21) {
+        if (bank.getScore() < player.getScore() || bank.getScore() < 17) {
+            bank.setState(State.WIN);
+        }
+    }
+
+    public void updateScoreAndState() {
+        if (player.getScore() >= 21) {
+            player.setState(State.FAIL);
             bank.setState(State.WIN);
         }
     }
@@ -136,12 +155,12 @@ public class Game {
 
     /**
      * insert a card tho the players
+     *
      * @param card
      */
     public void insertCardPlayer(Card card) {
         getPlayer().addCart(card);
         getDeck().remove(card);
-        giveBankCard();
     }
 
     /**

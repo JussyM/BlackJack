@@ -1,5 +1,5 @@
 package BJPackage.Model;
 
 public enum State {
-    WIN,FAIL;
+    WIN,FAIL,NEUTRE;
 }

@@ -30,7 +30,9 @@ public class Controller {
         do {
             view.displayCard(game);
             var answer = view.askInfo();
-            view.decision(game, answer);
+            game.decision(answer);
+            view.printScore(game.playersScore());
+
         }
         while (!game.win());
         view.printWinner(game);

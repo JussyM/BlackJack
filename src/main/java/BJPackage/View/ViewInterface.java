@@ -3,6 +3,8 @@ package BJPackage.View;
 import BJPackage.Model.Card;
 import BJPackage.Model.Game;
 
+import java.util.List;
+
 public interface ViewInterface {
     char askInfo();
 
@@ -14,12 +16,12 @@ public interface ViewInterface {
 
     int askBet();
 
-    void decision(Game game, char answer);
-
     void printWinner(Game game);
 
     void printWinnerMise(int mise);
 
     void printWelcomeMsg();
+
+    void printScore(int[] scores);
 
 }

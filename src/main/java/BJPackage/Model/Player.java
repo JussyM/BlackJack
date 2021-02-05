@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private final List<Card> playerCart;
+    private final List<Card> hand;
     private int mise;
     private int score;
     private State state;
 
     /**
-     *
      * @return
      */
     public int getScore() {
@@ -18,7 +17,6 @@ public class Player {
     }
 
     /**
-     *
      * @return
      */
     public int getMise() {
@@ -29,15 +27,14 @@ public class Player {
      *
      */
     public Player() {
-        playerCart = new ArrayList<>();
+        hand = new ArrayList<>();
         this.mise = 0;
         this.score = 0;
-        this.state=null;
+        this.state = State.NEUTRE;
 
     }
 
     /**
-     *
      * @return
      */
     public State getState() {
@@ -45,7 +42,6 @@ public class Player {
     }
 
     /**
-     *
      * @param state
      */
     public void setState(State state) {
@@ -53,7 +49,6 @@ public class Player {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -69,14 +64,14 @@ public class Player {
      * @param card
      */
     public void addCart(Card card) {
-        playerCart.add(card);
+        hand.add(card);
     }
 
     /**
      * @return
      */
-    public List<Card> getPlayerCart() {
-        return playerCart;
+    public List<Card> getHand() {
+        return hand;
     }
 
     /**
@@ -88,27 +83,22 @@ public class Player {
     }
 
     /**
-     *
      * @return
      */
-    private int playerScore() {
+    public int playerScore() {
         if (strike()) return 21;
-        var score = getPlayerCart().stream().mapToInt(x -> x.getValue().getValue()).sum();
-
-        return score > 21 ?
-                score = getPlayerCart().stream().mapToInt(x -> x.getValue().getSndValue()).sum() : score;
+        return getHand().stream().mapToInt(x -> x.getValue().getValue()).sum();
     }
 
     /**
-     * @param player
      * @return
      */
     private boolean strike() {
-        return this.getPlayerCart().contains(new Card(Color.SPADE, Value.ACE)) &&
-                (this.getPlayerCart().contains(new Card(Color.SPADE, Value.KING)) ||
-                        (this.getPlayerCart().contains(new Card(Color.SPADE, Value.QUEEN)) ||
-                                (this.getPlayerCart().contains(new Card(Color.SPADE, Value.TEN)) ||
-                                        (this.getPlayerCart().contains(new Card(Color.SPADE, Value.JACK))))));
+        return this.getHand().contains(new Card(Color.SPADE, Value.ACE)) &&
+                (this.getHand().contains(new Card(Color.SPADE, Value.KING)) ||
+                        (this.getHand().contains(new Card(Color.SPADE, Value.QUEEN)) ||
+                                (this.getHand().contains(new Card(Color.SPADE, Value.TEN)) ||
+                                        (this.getHand().contains(new Card(Color.SPADE, Value.JACK))))));
     }
 
 

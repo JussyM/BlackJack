@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Card {
     private Color color;
     private Value value;
-    private boolean userSndValue;
 
     /**
      * getter for color
@@ -33,10 +32,8 @@ public class Card {
      * @param value
      */
     public Card(Color color, Value value) {
-        if (color == null || value == null) throw new IllegalArgumentException("Argument null");
-        this.color = color;
-        this.value = value;
-        this.userSndValue = false;
+        this.color = Objects.requireNonNull(color,"Colors non valable");
+        this.value = Objects.requireNonNull(value,"Value non initialiser");
     }
 
     /**
